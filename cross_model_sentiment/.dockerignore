@@ -1,0 +1,11 @@
+.git
+.gitignore
+.vscode
+__pycache__
+*.pyc
+*.log
+data/      
+models/    
+logs/
+venv/
+.DS_Store
