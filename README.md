@@ -1,13 +1,13 @@
 # Cross Modal Sentiment Style-Transfer with Adversarial Training
 
-Project Overview
+## Project Overview
 This project explores a novel approach to natural language generation by implementing a Cross-Modal Sentiment and Style Transfer system using an Adversarial Training framework. The core idea is to take an input sentence and transform its sentiment (e.g., from negative to positive, or vice-versa) while preserving its original meaning and content, all powered by a Generator-Discriminator architecture.
 
 While "cross-modal" often implies different data types (like text to image), in this context, it refers to the transfer of a specific linguistic attribute (sentiment/style) onto existing textual content, making it a "text-to-text" generation task with a controlled output characteristic.
 
 This project is designed to showcase advanced deep learning techniques, including Transformer-based sequence generation, adversarial learning (inspired by GANs), and sophisticated loss functions for content preservation. It's built to be runnable on resource-constrained environments (like a laptop with 24GB RAM and limited SSD) by judiciously selecting model sizes and dataset subsets, while still delivering significant complexity and unique insights.
 
-Features
+## Features
 * Sentiment/Style Transfer: Transforms the sentiment of an input sentence to a target sentiment (e.g., negative to positive, positive to negative).
 
 * Content Preservation: Employs a cosine similarity-based loss using pre-trained sentence embeddings to ensure the core meaning of the original sentence is maintained during transfer.
@@ -22,7 +22,7 @@ Features
 
 * GPU Acceleration (MPS): Configured to leverage Apple's Metal Performance Shaders (MPS) for accelerated training on M-series Macs.
 
-Architecture
+## Architecture
 The project's core architecture consists of two primary deep learning models interacting in an adversarial manner, plus a helper model for content evaluation:
 
 * Generator (G):
@@ -57,34 +57,35 @@ The project's core architecture consists of two primary deep learning models int
 
   - Role: Provides a stable metric for semantic similarity, ensuring the generated sentence doesn't lose the meaning of the original.
 
-Training Flow:
+## Training Flow:
 
 The training process alternates between updating the Discriminator and the Generator, driven by a multi-faceted loss function:
 
-Discriminator Loss: Combines:
+* Discriminator Loss: Combines:
 
-Binary Cross-Entropy for distinguishing real vs. fake text.
+  - Binary Cross-Entropy for distinguishing real vs. fake text.
 
-Cross-Entropy for correctly classifying the sentiment of both real and generated text.
+  - Cross-Entropy for correctly classifying the sentiment of both real and generated text.
 
-Generator Loss: Combines:
+* Generator Loss: Combines:
 
-Adversarial Loss: G tries to fool D into classifying its generated text as "real."
+  - Adversarial Loss: G tries to fool D into classifying its generated text as "real."
 
-Sentiment/Style Loss: G tries to make D classify its generated text with the target sentiment.
+  - Sentiment/Style Loss: G tries to make D classify its generated text with the target sentiment.
 
-Content Preservation Loss: G tries to maximize the cosine similarity between the embeddings of the original and generated sentences (i.e., minimize 1 - cosine_similarity).
+  - Content Preservation Loss: G tries to maximize the cosine similarity between the embeddings of the original and generated sentences (i.e., minimize 1 - cosine_similarity).
 
-Dataset
+## Dataset
 This project utilizes the Stanford Sentiment Treebank v2 (SST-2) dataset.
 
-Size: Approximately 67,349 training examples and 872 validation examples (for binary classification). This is a relatively small dataset, making it ideal for local development on machines with limited storage.
+ * Size: Approximately 67,349 training examples and 872 validation examples (for binary classification). This is a relatively small dataset, making it ideal for local development on machines with limited storage.
 
-Content: Sentences from movie reviews labeled with binary sentiment (negative/positive).
+ * Content: Sentences from movie reviews labeled with binary sentiment (negative/positive).
 
-Acquisition: Handled automatically by the Hugging Face datasets library within the project.
+ * Acquisition: Handled automatically by the Hugging Face datasets library within the project.
 
-Project Structure
+## Project Structure
+```
 sentiment_style_transfer/
 ├── app/
 │   ├── __init__.py         # Python package marker
@@ -96,6 +97,7 @@ sentiment_style_transfer/
 ├── requirements.txt        # Lists all Python dependencies
 ├── .dockerignore           # Specifies files/directories to exclude from the Docker build context
 └── README.md               # This file
+```
 Setup and Running
 Prerequisites
 
