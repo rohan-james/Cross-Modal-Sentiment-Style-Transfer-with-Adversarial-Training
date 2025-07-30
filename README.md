@@ -98,30 +98,33 @@ sentiment_style_transfer/
 ├── .dockerignore           # Specifies files/directories to exclude from the Docker build context
 └── README.md               # This file
 ```
-Setup and Running
-Prerequisites
+# Setup and Running
+## Prerequisites
 
-Docker: Ensure Docker Desktop is installed and running on your system.
+* Docker: Ensure Docker Desktop is installed and running on your system.
 
-Steps
+## Steps
 
-Clone the Repository:
-
++ Clone the Repository:
+```bash
 Bash
 git clone https://github.com/your-username/sentiment_style_transfer.git
 cd sentiment_style_transfer
+```
 (Replace https://github.com/your-username/sentiment_style_transfer.git with your actual repository URL).
 
-Build the Docker Image:
++ Build the Docker Image:
 This command builds the Docker image. It will download the necessary base image, install Python dependencies, and set up your application. This might take a few minutes on the first run.
-
+```bash
 Bash
 docker build -t sentiment-style-transfer .
-Run the Docker Container:
+```
++ Run the Docker Container:
 This command starts the Docker container, which will automatically execute the main.py training script.
-
+```bash
 Bash
 docker run --rm --name sentiment_transfer_app sentiment-style-transfer
+```
 --rm: Automatically removes the container once it exits (useful for clean runs).
 
 --name sentiment_transfer_app: Assigns a readable name to your container.
