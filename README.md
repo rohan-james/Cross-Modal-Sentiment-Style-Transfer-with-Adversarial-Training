@@ -1,1 +1,1 @@
-# Cross-Modal-Sentiment-Style-Transfer-with-Adversarial-Training
+# Cross Modal Sentiment Style-Transfer with Adversarial Training
