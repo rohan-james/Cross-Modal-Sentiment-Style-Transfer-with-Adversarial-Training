@@ -125,46 +125,32 @@ This command starts the Docker container, which will automatically execute the m
 Bash
 docker run --rm --name sentiment_transfer_app sentiment-style-transfer
 ```
---rm: Automatically removes the container once it exits (useful for clean runs).
+* ```--rm```: Automatically removes the container once it exits (useful for clean runs).
 
---name sentiment_transfer_app: Assigns a readable name to your container.
+* ```--name sentiment_transfer_app```: Assigns a readable name to your container.
 
-Output
+## Output
 
 During training, you will see real-time progress updates in your terminal, including various loss values for the Generator and Discriminator.
 
-Generated Samples: After each epoch, the script will print a few example sentences, showing the original, target, and generated text, along with the sentiment predicted by the Discriminator for the generated text. These samples are also appended to output/generated_samples.txt.
+* Generated Samples: After each epoch, the script will print a few example sentences, showing the original, target, and generated text, along with the sentiment predicted by the Discriminator for the generated text. These samples are also appended to output/generated_samples.txt.
 
-Model Checkpoints: Trained Generator and Discriminator models (PyTorch .pt files) will be saved in the models/ directory after each epoch.
+* Model Checkpoints: Trained Generator and Discriminator models (PyTorch .pt files) will be saved in the models/ directory after each epoch.
 
-Configuration
+## Configuration
 All key parameters and hyperparameters can be found and modified in app/config.py. This includes:
+```
+* MAX_SEQUENCE_LENGTH
 
-MAX_SEQUENCE_LENGTH
+* BATCH_SIZE
 
-BATCH_SIZE
+* LEARNING_RATE_G, LEARNING_RATE_D
 
-LEARNING_RATE_G, LEARNING_RATE_D
+* NUM_EPOCHS
 
-NUM_EPOCHS
+* LAMBDA_ADV, LAMBDA_SENTIMENT, LAMBDA_CONTENT (weights for loss components)
 
-LAMBDA_ADV, LAMBDA_SENTIMENT, LAMBDA_CONTENT (weights for loss components)
+* TRANSFORMER_MODEL_NAME (for Discriminator backbone and Tokenizer)
 
-TRANSFORMER_MODEL_NAME (for Discriminator backbone and Tokenizer)
-
-DEVICE (automatically set to mps for Apple Silicon if available)
-
-Feel free to experiment with these values to observe their impact on training stability and generation quality.
-
-Future Enhancements
-Advanced Generator Decoder: Implement a more sophisticated Transformer Decoder with attention mechanism and proper auto-regressive decoding (greedy, beam search, nucleus sampling) for higher quality and more diverse text generation.
-
-Broader Style Transfer: Extend beyond sentiment to other stylistic attributes (e.g., formality, politeness, specific author styles) requiring more diverse style-labeled datasets or unsupervised disentanglement techniques.
-
-Quantitative Evaluation: Implement more rigorous evaluation metrics for text generation (e.g., BLEU, ROUGE, METEOR) and sentiment accuracy of generated text using an independent sentiment classifier.
-
-Human Evaluation: Conduct human evaluation studies to assess the fluency, coherence, and successfulness of style transfer of generated sentences.
-
-Web Interface: Develop a simple web application (e.g., using Flask/FastAPI) to expose the trained model for interactive inference.
-
-Hyperparameter Tuning Framework: Integrate with tools like Optuna or Weights & Biases for systematic hyperparameter optimization.
+* DEVICE (automatically set to mps for Apple Silicon if available)
+```
